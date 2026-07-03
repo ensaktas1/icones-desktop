@@ -7,6 +7,18 @@ fast, keyboard-friendly desktop app.
 Inspired by [icones](https://icones.js.org) ([antfu-collective/icones](https://github.com/antfu-collective/icones))
 and the clean UX of native icon managers, rebuilt as a lightweight Tauri app.
 
+## Download
+
+Grab the latest `.dmg` from the
+[**Releases**](https://github.com/ensaktas1/icones-desktop/releases/latest) page.
+
+1. Open the `.dmg` and drag **Icônes** into your **Applications** folder.
+2. The app isn't notarized yet, so on first launch macOS warns about an
+   unidentified developer. Right-click the app → **Open** → **Open** (just once).
+   Alternatively run `xattr -cr /Applications/Icônes.app` in Terminal.
+
+> Currently **Apple Silicon (arm64)** only — Intel/universal builds coming later.
+
 ## Features
 
 - **Browse by set** — icon collections grouped by category in a collapsible sidebar
