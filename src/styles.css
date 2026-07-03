@@ -104,23 +104,36 @@ select {
   border-right: 1px solid var(--border);
 }
 
-.sidebar-head {
-  height: 54px;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 16px 6px 78px; /* leave room for macOS traffic lights */
+.sidebar-top {
+  height: 38px; /* clearance for macOS traffic lights */
+  flex-shrink: 0;
 }
 
-.logo {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: linear-gradient(140deg, var(--surface-hover), var(--surface));
+.sidebar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin: 0 12px 2px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: var(--surface);
   border: 1px solid var(--border);
-  font-size: 18px;
-  color: var(--text);
+  flex-shrink: 0;
+}
+.sidebar-search:focus-within {
+  border-color: var(--border-strong);
+}
+.sidebar-search input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 13px;
+}
+.sidebar-search input::placeholder {
+  color: var(--text-faint);
 }
 
 .sidebar-scroll {
@@ -251,6 +264,47 @@ select {
 }
 .stack-item svg {
   font-size: 15px;
+}
+
+.tree-empty {
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* sidebar footer */
+.sidebar-foot {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+}
+.built-by {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.built-by span {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.built-by svg {
+  margin-left: auto;
+  font-size: 13px;
+  opacity: 0.55;
+}
+.built-by:hover {
+  background: var(--surface);
+}
+.built-by:hover span {
+  color: var(--text);
+}
+.built-by:hover svg {
+  opacity: 1;
 }
 
 /* ---------- main ---------- */
