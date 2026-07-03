@@ -54,6 +54,7 @@ pnpm tauri build    # produces a .app + .dmg in src-tauri/target/release/bundle
 
 ## Credits & licensing
 
+- Designed & built by [**Deserve Studio**](https://deserve.studio).
 - App code is MIT licensed — see [LICENSE](LICENSE).
 - Icons are provided by [Iconify](https://iconify.design); each icon set keeps its
   own license (MIT, Apache-2.0, CC-BY, etc.). Check the individual set before use.
