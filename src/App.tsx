@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Sidebar, type PaletteFilter } from "./components/Sidebar";
 import { Topbar } from "./components/Topbar";
 import { IconGrid } from "./components/IconGrid";
+import { VariantBar } from "./components/VariantBar";
 import { ExportPanel } from "./components/ExportPanel";
 import {
   fetchCollections,
@@ -9,6 +10,7 @@ import {
   searchIcons,
   type CollectionMeta,
 } from "./lib/api";
+import { detectVariants, matchesVariant } from "./lib/variants";
 import "./styles.css";
 
 const PAGE = 200;
@@ -27,6 +29,7 @@ export default function App() {
   const [palette, setPalette] = useState<PaletteFilter>("all");
   const [gridSize, setGridSize] = useState(56);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [variant, setVariant] = useState<string | null>(null);
 
   // Load collection index once.
   useEffect(() => {
@@ -71,14 +74,28 @@ export default function App() {
     };
   }, [query, activePrefix, searching, limit]);
 
-  // Reset paging whenever the context changes.
-  useEffect(() => setLimit(PAGE), [query, activePrefix]);
+  // Reset paging + variant whenever the context changes.
+  useEffect(() => {
+    setLimit(PAGE);
+    setVariant(null);
+  }, [query, activePrefix]);
+
+  useEffect(() => setLimit(PAGE), [variant]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
-  const visible = useMemo(() => names.slice(0, limit), [names, limit]);
+  // Variants only make sense when browsing a single set (not global search).
+  const variants = useMemo(() => (searching ? [] : detectVariants(names)), [names, searching]);
+
+  const filtered = useMemo(
+    () => (variant ? names.filter((n) => matchesVariant(n, variant)) : names),
+    [names, variant],
+  );
+
+  const visible = useMemo(() => filtered.slice(0, limit), [filtered, limit]);
+  const displayTotal = variant ? filtered.length : total;
 
   const activeMeta = collections.find((c) => c.prefix === activePrefix);
   const breadcrumb = searching
@@ -112,9 +129,10 @@ export default function App() {
         />
 
         <div className="content">
+          <VariantBar variants={variants} active={variant} onSelect={setVariant} />
           <IconGrid
             icons={visible}
-            total={total}
+            total={displayTotal}
             selected={selected}
             onSelect={setSelected}
             gridSize={gridSize}

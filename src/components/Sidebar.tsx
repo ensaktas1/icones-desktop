@@ -65,21 +65,21 @@ export function Sidebar({
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-top" data-tauri-drag-region />
-
-      <div className="sidebar-search">
-        <Icon icon="lucide:search" className="search-icon" />
-        <input
-          value={setQuery}
-          onChange={(e) => setSetQuery(e.target.value)}
-          placeholder="Search sets"
-          spellCheck={false}
-        />
-        {setQuery && (
-          <button className="search-clear" onClick={() => setSetQuery("")}>
-            <Icon icon="lucide:x" />
-          </button>
-        )}
+      <div className="sidebar-header" data-tauri-drag-region>
+        <div className="sidebar-search">
+          <Icon icon="lucide:search" className="search-icon" />
+          <input
+            value={setQuery}
+            onChange={(e) => setSetQuery(e.target.value)}
+            placeholder="Search sets"
+            spellCheck={false}
+          />
+          {setQuery && (
+            <button className="search-clear" onClick={() => setSetQuery("")}>
+              <Icon icon="lucide:x" />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="sidebar-scroll">
