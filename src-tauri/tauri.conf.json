@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "icones",
+  "productName": "Icônes",
   "version": "0.1.1",
   "identifier": "studio.deserve.icones",
   "build": {
