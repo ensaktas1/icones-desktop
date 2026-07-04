@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react";
 
+const isMac = navigator.platform.startsWith("Mac");
+
 interface Props {
   query: string;
   onQuery: (q: string) => void;
@@ -26,7 +28,7 @@ export function Topbar({ query, onQuery, breadcrumb, theme, onTheme }: Props) {
           </button>
         ) : (
           <span className="kbd">
-            <Icon icon="lucide:command" />F
+            {isMac ? <Icon icon="lucide:command" /> : "Ctrl+"}F
           </span>
         )}
       </div>
